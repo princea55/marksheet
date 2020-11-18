@@ -1,0 +1,136 @@
+{%extends 'layout.html'%}
+{%block content%}
+<div class="content-section">
+    <form method="POST" action="">
+        {{form.hidden_tag()}}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">
+                Student Marksheet Form
+            </legend>
+            <div class="form-group">
+                {{form.name.label(class="form-control-label")}}
+
+                {%if form.name.errors%}
+                {{form.name(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {%for error in form.name.errors%}
+                    <span>{{error}}</span>
+                    {%endfor%}
+                </div>
+                {%else%}
+                {{form.name(class="form-control form-control-lg")}}
+                {%endif%}
+
+            </div>
+            <div class="form-group">
+                {{form.rollno.label(class="form-control-label")}}
+                {%if form.rollno.errors%}
+                {{form.rollno(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {%for error in form.rollno.errors%}
+                    <span>{{error}}</span>
+                    {%endfor%}
+                </div>
+                {%else%}
+                {{form.rollno(class="form-control form-control-lg")}}
+                {%endif%}
+            </div>
+            <div class="form-group">
+                {{form.maths.label(class="form-control-label")}}
+                {%if form.maths.errors%}
+                {{form.maths(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {%for error in form.maths.errors%}
+                    <span>{{error}}</span>
+                    {%endfor%}
+                </div>
+                {%else%}
+                {{form.maths(class="form-control form-control-lg")}}
+                {%endif%}
+            </div>
+            <div class="form-group">
+                {{form.science.label(class="form-control-label")}}
+                {%if form.science.errors%}
+                {{form.science(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {%for error in form.science.errors%}
+                    <span>{{error}}</span>
+                    {%endfor%}
+                </div>
+                {%else%}
+                {{form.science(class="form-control form-control-lg")}}
+                {%endif%}
+            </div>
+            <div class="form-group">
+                {{form.english.label(class="form-control-label")}}
+                {%if form.english.errors%}
+                {{form.english(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {%for error in form.english.errors%}
+                    <span>{{error}}</span>
+                    {%endfor%}
+                </div>
+                {%else%}
+                {{form.english(class="form-control form-control-lg")}}
+                {%endif%}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{form.submit(class="btn btn-outline-info")}}
+        </div>
+    </form>
+    {%if sheets%}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Roll NO</th>
+                <th scope="col">Maths Mark</th>
+                <th scope="col">Science Mark</th>
+                <th scope="col">English Mark</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for sheet in sheets%}
+            <tr>
+                <th scope="row">{{sheet.id}}</th>
+                <td>{{sheet.name}}</td>
+                <td>{{sheet.rollno}}</td>
+                <td>{{sheet.maths}}</td>
+                <td>{{sheet.science}}</td>
+                <td>{{sheet.english}}</td>
+                <td><a class="btn btn-secondary btn-sm my-1" href="{{url_for('update_sheet', sheet_id=sheet.id)}}">Edit</a></td>
+                <td><button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
+                        data-target="#deleteModal">Delete</button></td>
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Detele Post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure want to delete this sheet?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <form action="{{url_for('delete_sheet', sheet_id=sheet.id)}}" method="post">
+                                    <input type="submit" value="Delete Post" class="btn btn-danger">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    {%endif%}
+</div>
+
+
+{%endblock content%}

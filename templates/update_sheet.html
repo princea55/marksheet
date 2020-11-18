@@ -1,0 +1,85 @@
+{%extends 'layout.html'%}
+{%block content%}
+<div class="content-section">
+    <form method="POST" action="">
+        {{form.hidden_tag()}}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">
+                Student Marksheet Form
+            </legend>
+            <div class="form-group">
+                {{form.name.label(class="form-control-label")}}
+
+                {%if form.name.errors%}
+                {{form.name(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {%for error in form.name.errors%}
+                    <span>{{error}}</span>
+                    {%endfor%}
+                </div>
+                {%else%}
+                {{form.name(class="form-control form-control-lg")}}
+                {%endif%}
+
+            </div>
+            <div class="form-group">
+                {{form.rollno.label(class="form-control-label")}}
+                {%if form.rollno.errors%}
+                {{form.rollno(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {%for error in form.rollno.errors%}
+                    <span>{{error}}</span>
+                    {%endfor%}
+                </div>
+                {%else%}
+                {{form.rollno(class="form-control form-control-lg")}}
+                {%endif%}
+            </div>
+            <div class="form-group">
+                {{form.maths.label(class="form-control-label")}}
+                {%if form.maths.errors%}
+                {{form.maths(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {%for error in form.maths.errors%}
+                    <span>{{error}}</span>
+                    {%endfor%}
+                </div>
+                {%else%}
+                {{form.maths(class="form-control form-control-lg")}}
+                {%endif%}
+            </div>
+            <div class="form-group">
+                {{form.science.label(class="form-control-label")}}
+                {%if form.science.errors%}
+                {{form.science(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {%for error in form.science.errors%}
+                    <span>{{error}}</span>
+                    {%endfor%}
+                </div>
+                {%else%}
+                {{form.science(class="form-control form-control-lg")}}
+                {%endif%}
+            </div>
+            <div class="form-group">
+                {{form.english.label(class="form-control-label")}}
+                {%if form.english.errors%}
+                {{form.english(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+                    {%for error in form.english.errors%}
+                    <span>{{error}}</span>
+                    {%endfor%}
+                </div>
+                {%else%}
+                {{form.english(class="form-control form-control-lg")}}
+                {%endif%}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{form.submit(class="btn btn-outline-info")}}
+            <a class="btn btn-light ml-3" href="{{url_for('home')}}">Cancle</a>
+        </div>
+        
+    </form>
+</div>
+{%endblock%}
